@@ -19,13 +19,15 @@ docker build -t my-spa-app .
 
 1. Global Configuration Block
 
-    user nginx;
-    worker_processes auto;
-    error_log /var/log/nginx/error.log warn;
-    pid /var/run/nginx.pid;
+        user nginx;
+        
+        worker_processes auto;
+        
+        error_log /var/log/nginx/error.log warn;
+        
+        pid /var/run/nginx.pid;
 
 Explanation:
-
     * user nginx: Runs nginx processes under the 'nginx' user for security
     * worker_processes auto: Automatically detects CPU cores and creates optimal worker processes
     * error_log: Defines where error logs are stored and log level (warn)
