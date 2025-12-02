@@ -121,17 +121,17 @@ Performance Benefits:
       
 6. Gzip Compression
 
-      gzip on;
-      
-      gzip_vary on;
-      
-      gzip_min_length 1024;
-      
-      gzip_proxied any;
-      
-      gzip_comp_level 6;
-      
-      gzip_types [various file types];
+              gzip on;
+              
+              gzip_vary on;
+              
+              gzip_min_length 1024;
+              
+              gzip_proxied any;
+              
+              gzip_comp_level 6;
+              
+              gzip_types [various file types];
       
 Bandwidth Savings: Compresses responses by 60-80%, significantly reducing load times.
 
@@ -180,27 +180,31 @@ Security Benefits:
 
 10. The Magic Fix - Client-Side Routing Handler
 
-    location / {
+            location / {
 
         try_files $uri $uri/ /index.html;
-    }
+            }
     
   This is the key solution!
   
-      * First, try to serve the exact file requested ($uri)
-      * If not found, try as a directory ($uri/)
-      * If still not found, serve index.html (letting the SPA handle routing)
+* First, try to serve the exact file requested ($uri)
+
+* If not found, try as a directory ($uri/)
+
+* If still not found, serve index.html (letting the SPA handle routing)
   
   Why It Works: This ensures that any route refresh falls back to index.html, allowing your SPA's JavaScript router to handle the URL.
   
 11. Health Check Endpoint
 
-      location /health {
-          access_log off;
-          return 200 "healthy\n";
-          add_header Content-Type text/plain;
-      }
-      
+              location /health 
+              {
+              
+                  access_log off;
+                  return 200 "healthy\n";
+                  add_header Content-Type text/plain;
+              }
+              
 ALB Integration: Provides a lightweight endpoint for ALB health checks without cluttering access logs.
 
 
