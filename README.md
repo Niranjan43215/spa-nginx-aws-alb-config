@@ -28,19 +28,27 @@ docker build -t my-spa-app .
         pid /var/run/nginx.pid;
 
 Explanation:
-    * user nginx: Runs nginx processes under the 'nginx' user for security
-    * worker_processes auto: Automatically detects CPU cores and creates optimal worker processes
-    * error_log: Defines where error logs are stored and log level (warn)
-    * pid: Specifies the process ID file location
+
+* user nginx: Runs nginx processes under the 'nginx' user for security
+
+* worker_processes auto: Automatically detects CPU cores and creates optimal worker processes
+
+* error_log: Defines where error logs are stored and log level (warn)
+
+* pid: Specifies the process ID file location
     
 Why Important: Ensures nginx runs securely and efficiently with proper logging.
 
 2. Events Block
 
       events {
+      
        worker_connections 1024;
+       
        use epoll;
+       
        multi_accept on;
+       
       }
       
 Explanation:
